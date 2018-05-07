@@ -44,8 +44,8 @@ def kMeans(df):
 # Question 1
 path="C:/Users/Abhishek Patil/Desktop/Olympics_Dataset/olympics.csv"
 df = load_data(path)
-print("Dataset: ",df.head(5))
-print("\n\nShape of Data: ",df.shape)
+print("Dataset: ", df.head(5))
+print("\n\nShape of Data: ", df.shape)
 
 
 # Question 2: Return results for first country
@@ -53,7 +53,7 @@ print("\n\nFirst Country: ", df.iloc[0, :])
 
 
 # Question 3: Return name of country who won most gold medals
-print("\n\nMost Gold Medals: ",df.iloc[:146, 2].idxmax())
+print("\n\nMost Gold Medals: ", df.iloc[:146, 2].idxmax())
 
 
 # Question 4: Return name of country who has biggest difference between their summer and winter gold medal counts
@@ -61,7 +61,7 @@ print("\n\nBiggest difference between their summer and winter gold medal counts:
 
 
 # Question 5: Write a function to update the dataframe to include a new column called "Points" for Games which is a weighted value where each gold medal counts for 3 points, silver medals for 2 points, and bronze medals for 1 point. The function should return only the column (a Series object) which you created.
-print("\n\nPoints of Countries: ",get_points(df))
+print("\n\nPoints of Countries: ", get_points(df))
 
 
 # Question 6: Return K-Means cluster centers
