@@ -19,30 +19,10 @@ def load_data(path):
     df.iloc[:, 0] = country_names
     df.drop('Total', axis=1, inplace=True)
     return df
-########################################################################################################################
-
-
-def first_country(df):
-    first_c = df.iloc[0, :]
-    return first_c
-########################################################################################################################
-
-
-def gold_medal(df):
-    return df.iloc[:146, 2].idxmax()
-########################################################################################################################
-
-
-def biggest_difference_in_gold_medal(df):
-    return (df.iloc[0:146, 2] - df.iloc[0:146, 6]).argmax()
-########################################################################################################################
-
 
 def get_points(df):
     df['points'] = 3 * (df['Gold'].sum(axis=1)) + 2 * (df['Silver'].sum(axis=1)) + 1 * (df['Bronze'].sum(axis=1))
     return df.iloc[:, 14]
-########################################################################################################################
-
 
 def kMeans(df):
     from sklearn.preprocessing import LabelEncoder
@@ -59,40 +39,30 @@ def kMeans(df):
     km = KMeans(n_clusters=5, init='k-means++', n_init=10)
     km=km.fit(df)
     return km.cluster_centers_
-########################################################################################################################
 
 
-########################################################################################################################
-
-#Q1
+# Question 1
 path="C:/Users/Abhishek Patil/Desktop/Olympics_Dataset/olympics.csv"
 df = load_data(path)
 print("Dataset: ",df.head(5))
-
 print("\n\nShape of Data: ",df.shape)
-########################################################################################################################
 
 
-#Q2
-print("\n\nFirst Country: ",first_country(df))
-########################################################################################################################
+# Question 2: Return results for first country
+print("\n\nFirst Country: ", df.iloc[0, :])
 
 
-#Q3
-print("\n\nMost Gold Medals: ",gold_medal(df))
-########################################################################################################################
+# Question 3: Return name of country who won most gold medals
+print("\n\nMost Gold Medals: ",df.iloc[:146, 2].idxmax())
 
 
-#Q4
-print("\n\nBiggest difference between their summer and winter gold medal counts: ", biggest_difference_in_gold_medal(df))
-########################################################################################################################
+# Question 4: Return name of country who has biggest difference between their summer and winter gold medal counts
+print("\n\nBiggest difference between their summer and winter gold medal counts: ", (df.iloc[0:146, 2] - df.iloc[0:146, 6]).argmax())
 
 
-#Q5
+# Question 5: Write a function to update the dataframe to include a new column called "Points" for Games which is a weighted value where each gold medal counts for 3 points, silver medals for 2 points, and bronze medals for 1 point. The function should return only the column (a Series object) which you created.
 print("\n\nPoints of Countries: ",get_points(df))
-########################################################################################################################
 
 
-#Q6
+# Question 6: Return K-Means cluster centers
 print("\n\nK-means Centres of the 4 Clusters formed: ", kMeans(df))
-########################################################################################################################
